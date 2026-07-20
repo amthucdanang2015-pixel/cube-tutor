@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="TasteLoop">
+  <rect width="64" height="64" rx="15" fill="#0d0d0b"/>
+  <path d="M14 26c4-10 15-15 25-11 3 1 6 3 8 6M50 38c-4 10-15 15-25 11-3-1-6-3-8-6" fill="none" stroke="#d9ff63" stroke-width="6" stroke-linecap="round"/>
+  <path d="M38 13 26 51" stroke="#f2f0e8" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="14" cy="26" r="3" fill="#ff7a59"/>
+  <circle cx="50" cy="38" r="3" fill="#ff7a59"/>
+</svg>

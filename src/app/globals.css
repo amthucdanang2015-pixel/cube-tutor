@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-ink: #0d0d0b;
+  --color-paper: #f2f0e8;
+  --color-loop: #d9ff63;
+  --color-signal: #ff7a59;
+  --motion-fast: 160ms;
+  --motion-base: 320ms;
+  --motion-slow: 700ms;
+  --ease-loop: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 78% -8%, rgba(217, 255, 99, 0.07), transparent 30rem),
+    #0d0d0b;
+  color: #f2f0e8;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: rgba(217, 255, 99, 0.32);
+  color: #0d0d0b;
+}
+
+/* Keyboard focus — always visible for keyboard, never for mouse (a11y floor, D-019) */
+:focus-visible {
+  outline: 2px solid #d9ff63;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Skip link — first focusable element, visible only when focused */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  border-radius: 999px;
+  background: #fff;
+  color: #0a0a0b;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: top 0.15s ease;
+}
+.skip-link:focus-visible {
+  top: 16px;
+}
+
+/* Scrollbars — dark track everywhere; the light UA default track is banned (D-023) */
+html {
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Internal rails/lists: near-invisible until hovered — content shows scrollability */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 99px;
+}
+.scroll-slim:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Utility: subtle grain overlay */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes gradpan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.text-gradient {
+  background: linear-gradient(115deg, #f2f0e8 0%, #d9ff63 48%, #ff9a78 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-sheen {
+  background:
+    radial-gradient(
+      600px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(217, 255, 99, 0.12),
+      transparent 40%
+    );
+}
+
+/* TasteLoop identity ------------------------------------------------------ */
+.brand-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 0.78rem;
+  font-weight: 760;
+  letter-spacing: 0.075em;
+  line-height: 1;
+}
+
+.brand-compact-mark {
+  display: inline-flex;
+  align-items: baseline;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.brand-gate {
+  color: var(--color-loop);
+  display: inline-block;
+  margin-inline: 0.02em;
+  transform-origin: center;
+}
+
+.wordmark-animated .wordmark-letter {
+  animation: wordmark-enter var(--motion-slow) var(--ease-loop) both;
+  animation-delay: calc(var(--letter-index) * 34ms);
+}
+
+.wordmark-animated .brand-gate {
+  animation:
+    wordmark-enter var(--motion-slow) var(--ease-loop) both,
+    wordmark-gate 2.6s var(--ease-loop) 1.1s infinite;
+}
+
+@keyframes wordmark-enter {
+  from { opacity: 0; transform: translateY(0.45em); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes wordmark-gate {
+  0%, 100% { color: var(--color-loop); transform: scaleY(1); }
+  50% { color: var(--color-signal); transform: scaleY(1.22); }
+}
+
+/* Living Loop: motion describes selection, feedback, and continuity. */
+.living-loop {
+  position: relative;
+  border: 1px solid rgba(242, 240, 232, 0.12);
+  border-radius: 2rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 36%, rgba(217, 255, 99, 0.09), transparent 30%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008));
+}
+
+.living-loop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(242,240,232,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(242,240,232,.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom, black, transparent 86%);
+}
+
+.loop-candidates path {
+  stroke: rgba(242, 240, 232, 0.14);
+  stroke-width: 2;
+}
+
+.loop-candidates path:nth-child(1),
+.loop-candidates path:nth-child(5) { opacity: 0.45; }
+.loop-candidates path:nth-child(2),
+.loop-candidates path:nth-child(4) { opacity: 0.72; }
+
+.loop-output-dots circle { fill: rgba(242, 240, 232, 0.38); }
+.loop-output-dots circle:nth-child(3) { fill: var(--color-loop); filter: url(#loop-soft-glow); }
+
+.loop-selected {
+  stroke: var(--color-loop);
+  stroke-width: 5;
+  filter: url(#loop-soft-glow);
+}
+
+.loop-gate-glow {
+  stroke: rgba(217, 255, 99, 0.24);
+  stroke-width: 28;
+  filter: url(#loop-soft-glow);
+}
+
+.loop-gate {
+  stroke: var(--color-paper);
+  stroke-width: 8;
+}
+
+.loop-reality {
+  color: var(--color-signal);
+  stroke: var(--color-signal);
+  stroke-width: 4;
+}
+
+.loop-return {
+  color: var(--color-loop);
+  stroke: var(--color-loop);
+  stroke-width: 3;
+}
+
+.loop-flow {
+  stroke-dasharray: 14 11;
+  animation: loop-flow 2.8s linear infinite;
+}
+
+.loop-node > circle:first-child {
+  fill: #151512;
+  stroke: rgba(255, 122, 89, 0.7);
+  stroke-width: 2;
+}
+.loop-node-core { fill: var(--color-signal); }
+
+.loop-labels {
+  fill: rgba(242, 240, 232, 0.48);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+@keyframes loop-flow {
+  to { stroke-dashoffset: -50; }
+}
+
+.section-rule {
+  border-top: 1px solid rgba(242, 240, 232, 0.12);
+}
+
+.eyebrow {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-signal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .loop-flow { stroke-dasharray: none; }
+}
