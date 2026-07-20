@@ -1,0 +1,20 @@
+<svg width="201" height="201" viewBox="0 0 201 201" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 253">
+<g id="Group 11">
+<path id="Rectangle 5" d="M69.8845 70.1268L131.302 131.544L100.593 162.253C83.6333 179.213 56.1358 179.213 39.1759 162.253C22.2159 145.293 22.2159 117.795 39.1759 100.835L69.8845 70.1268Z" fill="white"/>
+<path id="Rectangle 4" d="M100.593 39.4181C117.553 22.4582 145.051 22.4582 162.011 39.4181C178.97 56.3781 178.97 83.8755 162.011 100.835L131.302 131.544L69.8845 70.1268L100.593 39.4181Z" fill="#3CD955"/>
+<path id="Rectangle 6" d="M100.593 39.729C117.553 22.7691 145.051 22.7691 162.01 39.729V39.729C178.97 56.689 178.97 84.1864 162.01 101.146L100.593 162.564C83.6332 179.524 56.1357 179.524 39.1758 162.564V162.564C22.2159 145.604 22.2159 118.106 39.1758 101.146L100.593 39.729Z" stroke="black" stroke-width="6.66667"/>
+<g id="Group 10">
+<g id="Group 8">
+<circle id="Ellipse 3" cx="140.166" cy="103.739" r="22.2711" transform="rotate(45 140.166 103.739)" fill="white" stroke="black" stroke-width="5"/>
+<circle id="Ellipse 4" cx="140.166" cy="112.072" r="6.68132" transform="rotate(45 140.166 112.072)" fill="black"/>
+</g>
+<g id="Group 7">
+<circle id="Ellipse 2" cx="97.422" cy="61.6797" r="22.2711" transform="rotate(45 97.422 61.6797)" fill="white" stroke="black" stroke-width="5"/>
+<circle id="Ellipse 5" cx="97.422" cy="70.0131" r="6.68132" transform="rotate(45 97.422 70.0131)" fill="black"/>
+</g>
+</g>
+<path id="Rectangle 7" d="M60.9167 159.136C68.0457 162.13 76.2937 161.631 83.0498 157.64" stroke="black" stroke-width="6.66667" stroke-linecap="round"/>
+</g>
+</g>
+</svg>
