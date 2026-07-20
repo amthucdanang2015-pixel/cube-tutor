@@ -18,13 +18,27 @@ type Item =
   | { kind: "web"; key: string; name: string; tagline: string; host: string; url: string; stack: string[]; accent: string; embed: boolean; icon: string; }
   | { kind: "app"; key: string; name: string; note: string; genre: string; icon: string; url: string; screenshots: string[]; accent: string };
 
+type ShippedSiteWithIcon = { icon?: string, url: URL| string, name: string, tagline: string, slug: string, stack: string[], accent: string, embed?: boolean };
+
 /** One item list, shared by the hero show and the showcase — same keys, same order. */
 function useShowcaseItems(apps: ShippedApp[]): Item[] {
   return useMemo(() => {
-    const web: Item[] = SHIPPED_SITES.map((s) => ({
-      kind: "web", key: `web-${s.slug}`, name: s.name, tagline: s.tagline, icon: s.icon,
-      host: new URL(s.url).hostname.replace(/^www\./, ""), url: s.url, stack: s.stack, accent: s.accent, embed: s.embed ?? true,
-    }));
+    const web: Item[] = SHIPPED_SITES.map((s) => {
+      const site = s as ShippedSiteWithIcon;
+      const host = new URL(site.url).hostname.replace(/^www\./, "");
+      return {
+        kind: "web",
+        key: `web-${site.slug}`,
+        name: site.name,
+        tagline: site.tagline,
+        icon: site.icon ?? `https://www.google.com/s2/favicons?sz=64&domain=${host}`,
+        host,
+        url: typeof site.url === "string" ? site.url : site.url.toString(),
+        stack: site.stack,
+        accent: site.accent,
+        embed: site.embed ?? true,
+      };
+    });
     const app: Item[] = apps.map((a) => ({
       kind: "app", key: `app-${a.id}`, name: a.name, note: appNote(a.name) ?? `${a.genre} · live on the App Store`,
       genre: a.genre, icon: a.icon, url: a.url, screenshots: a.screenshots, accent: appAccent(a.genre),
