@@ -41,7 +41,7 @@ function Cubie({ cubie }: { cubie: LogicalCubie }) {
 
   return (
     <mesh ref={cubie.meshRef} position={cubie.currentPos}>
-      {/* <boxGeometry args={[0.95, 0.95, 0.95]} /> */}
+      <boxGeometry args={[0.95, 0.95, 0.95]} />
       {materials.map((mat, i) => (
         <primitive key={i} object={mat} attach={`material-${i}`} />
       ))}
