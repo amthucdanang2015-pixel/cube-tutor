@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-// @ts-expect-error: allow side-effect global CSS import without separate type declarations
 import "./globals.css";
-import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { BRAND, OFFERS } from "@/config/brand";
 
